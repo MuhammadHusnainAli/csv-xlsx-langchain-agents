@@ -20,6 +20,7 @@ def create_sql_tools(db: SQLDatabase) -> list:
     
     @tool
     def get_schema(table_names: str = "") -> str:
+        """Get the database schema including table names, columns, and data types. Optionally pass comma-separated table names to get specific tables only."""
         if table_names:
             tables = [t.strip() for t in table_names.split(",")]
             logger.debug(f"Getting schema for tables: {tables}")
@@ -29,6 +30,7 @@ def create_sql_tools(db: SQLDatabase) -> list:
     
     @tool
     def validate_query(query: str) -> str:
+        """Validate a SQL query for security and syntax before execution. Returns JSON with validation result, errors, and recommendations."""
         logger.info(f"[SQL VALIDATION] Validating query: {query[:50]}...")
         
         is_valid_hardcoded, hardcoded_message, hardcoded_errors = hardcoded_validation(query)
@@ -109,6 +111,7 @@ def create_sql_tools(db: SQLDatabase) -> list:
     
     @tool
     def run_query(query: str) -> str:
+        """Execute a SQL SELECT query on the database after validation. Returns query results as formatted text."""
         validation_result_str = validate_query.invoke(query)
         validation_result = json.loads(validation_result_str)
         
@@ -132,7 +135,7 @@ def create_sql_tools(db: SQLDatabase) -> list:
     
     @tool
     def explore_data(table_name: str, limit: int = 5) -> str:
-    
+        """Explore sample data from a specific table. Returns first N rows to understand the data structure and content."""
         if limit > settings.MAX_QUERY_LIMIT:
             limit = settings.MAX_QUERY_LIMIT
         query = f"SELECT * FROM {table_name} LIMIT {limit}"

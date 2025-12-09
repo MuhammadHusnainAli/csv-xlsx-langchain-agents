@@ -43,7 +43,7 @@ def create_main_agent_tools(db: SQLDatabase) -> list:
     
     @tool
     def call_chart_agent(columns: str, data: str, intent: str = "") -> str:
-    
+        """Generate a Plotly.js chart visualization from query results. Pass column names as comma-separated string, data as JSON array of rows, and optional user intent."""
         global _main_agent_result
         logger.info(f"[MAIN AGENT] Calling Chart Agent for Plotly visualization")
         logger.debug(f"[MAIN AGENT] Chart input - columns: {columns[:100]}...")
