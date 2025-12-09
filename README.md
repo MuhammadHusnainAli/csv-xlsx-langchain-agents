@@ -2,6 +2,12 @@
 
 AI-powered data analysis API. Upload CSV/XLSX files, query data using natural language, and get automatic chart visualizations.
 
+## Screenshots
+
+![Upload Interface](https://github.com/user-attachments/assets/2bb95f47-07dd-4b13-899a-4d37751fa679)
+
+![Chat Interface](https://github.com/user-attachments/assets/6f348f77-fb08-4ad9-b294-1f038923bce8)
+
 ## Architecture
 
 ```
